@@ -925,6 +925,7 @@ function Aptechka:RefreshAllUnitsHealth()
     Aptechka:ForEachFrame(Aptechka.FrameUpdateHealth)
     Aptechka:ForEachFrame(function(frame, unit)
         Aptechka.FrameUpdatePower(frame, unit, "MANA")
+        Aptechka.FrameUpdatePower(frame, unit, "ENERGY")
     end)
 end
 function Aptechka.FrameUpdateUnitColor(frame, unit)
@@ -1441,9 +1442,9 @@ end
 local Enum_RunicPower = Enum.PowerType.RunicPower
 local Enum_Alternate = Enum.PowerType.Alternate
 function Aptechka.FrameUpdatePower(frame, unit, ptype)
-    if ptype == "MANA" then-- not frame.power.disabled then
-        local powerMax = UnitPowerMax(unit, 0)
-        local power = UnitPower(unit, 0)
+    if ptype == "MANA" or ptype == "ENERGY" or ptype == "RAGE" then-- not frame.power.disabled then
+        local powerMax = UnitPowerMax(unit)
+        local power = UnitPower(unit)
         if powerMax == 0 then
             power = 1
             powerMax = 1
