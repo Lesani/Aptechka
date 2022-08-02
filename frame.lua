@@ -683,7 +683,7 @@ local PowerBar_OnPowerTypeChange = function(powerbar, powerType, isDead)
     self.power.powerType = powerType
 
     local isVertical = Aptechka.db.profile.healthOrientation == "VERTICAL"
-    if powerType ~= "MANA" or isDead then
+    if powerType ~= "MANA" and powerType ~= "ENERGY" and powerType ~= "RAGE" or isDead then --MODIFY MANA
         self.power.disabled = true
         self.power:Hide()
         if isVertical then
